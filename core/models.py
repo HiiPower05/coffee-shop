@@ -1,5 +1,4 @@
 from django.db import models
-from django import render 
 
 # Create your models here.
 class Category(models.Model):
@@ -15,7 +14,7 @@ class MenuItem(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='items')
     name = models.CharField(max_length=150)
     description = models.TextField(blank=True, help_text="Brief description of ingredients")
-    price = models.DecimalField(max_digits=6, decimal_digits=2) 
+    price = models.DecimalField(max_digits=6, decimal_places=2) 
     is_available = models.BooleanField(default=True) 
 
     def __str__(self):

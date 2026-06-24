@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-
+from .models import Category
 # Create your views here.
 def home(request):
+    categories = Category.objects.order_by('display_order')
+
     template_name = "core/index.html"
-    return render(request, template_name)
+    return render(request, template_name, {'categories': categories})

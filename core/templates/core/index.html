@@ -1,23 +1,28 @@
 {% extends 'core/base.html' %}
-
+{% load static %}
 
     {% block content %}
 
-      <h1>Menu</h1>
-      {% for category in categories %}
-      <h2>{{ category.display_order }}. {{ category.name }}</h2>
-
-      <ul>
+    {% for category in categories %}
+      <section class="menu-category">
+        
+        <h2>{{ category.display_order }}. {{ category.name }}</h2>
+      
         {% for element in category.items.all %}
-          <li>{{ element.name }} - R{{ element.price }}
-        {% if element.description %}
-        <br>
-          <small>{{ element.description}}</small>
-        {% endif %}
-          </li>
+        <div class="menu-item">
+          <div class="menu-header">
+            <span class="item-name">{{ element.name }}</span>
+            <span class="item-price">R{{ element.price }}</span>
+          </div>
+
+          {% if element.description %}
+            <p class="item-description">{{ element.description }}</p>
+
+          {% endif %}
+        </div>
         {% empty %}
-        <li>No products available</li>
+          <p>No products available</p>
         {% endfor %}
-      </ul>
-      {% endfor %}
+      </section>
+     {% endfor %}
     {% endblock %}
